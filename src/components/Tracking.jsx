@@ -1,5 +1,8 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+
 const Tracking = () => {
+    const { getCartCount } = useCart();
     return (
         <>
     <div className="header">
@@ -28,7 +31,7 @@ const Tracking = () => {
 
         <Link className="cart-link header-link" to="/checkout">
           <img className="cart-icon" src="/icons/cart-icon.png" />
-          <div className="cart-quantity">3</div>
+          <div className="cart-quantity">{getCartCount()}</div>
           <div className="cart-text">Cart</div>
         </Link>
       </div>

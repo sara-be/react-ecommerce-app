@@ -1,6 +1,27 @@
 import { Link } from "react-router-dom";
+import { products } from "../utils/data/products";
+import { useCart } from "../context/CartContext";
 
 const HomePage = () => {
+    const { addToCart, getCartCount } = useCart();
+
+    const getRatingImage = (stars) => {
+        if (stars === 4.5) return "/ratings/rating-45.png";
+        if (stars === 4) return "/ratings/rating-40.png";
+        if (stars === 5) return "/ratings/rating-50.png";
+        if (stars === 3.5) return "/ratings/rating-35.png";
+        if (stars === 3) return "/ratings/rating-30.png";
+        return "/ratings/rating-40.png";
+    };
+
+    const formatPrice = (priceCents) => {
+        return (priceCents / 100).toFixed(2);
+    };
+
+    const handleAddToCart = (product, quantity) => {
+        addToCart(product, parseInt(quantity));
+    };
+
     return (
         <>
             <div className="header">
@@ -29,7 +50,7 @@ const HomePage = () => {
 
         <Link className="cart-link header-link" to="/checkout">
           <img className="cart-icon" src="/icons/cart-icon.png" />
-          <div className="cart-quantity">3</div>
+          <div className="cart-quantity">{getCartCount()}</div>
           <div className="cart-text">Cart</div>
         </Link>
       </div>
@@ -37,152 +58,62 @@ const HomePage = () => {
 
     <div className="home-page">
       <div className="products-grid">
-        <div className="product-container">
-          <div className="product-image-container">
-            <img className="product-image"
-              src="/products/athletic-cotton-socks-6-pairs.jpg" />
-          </div>
-
-          <div className="product-name limit-text-to-2-lines">
-            Black and Gray Athletic Cotton Socks - 6 Pairs
-          </div>
-
-          <div className="product-rating-container">
-            <img className="product-rating-stars"
-              src="/ratings/rating-45.png" />
-            <div className="product-rating-count link-primary">
-              87
+        {products.map((product) => (
+          <div key={product.id} className="product-container">
+            <div className="product-image-container">
+              <img className="product-image"
+                src={`/${product.image}`} />
             </div>
-          </div>
 
-          <div className="product-price">
-            $10.90
-          </div>
-
-          <div className="product-quantity-container">
-            <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </div>
-
-          <div className="product-spacer"></div>
-
-          <div className="added-to-cart">
-            <img src="/icons/checkmark.png" />
-            Added
-          </div>
-
-          <button className="add-to-cart-button button-primary">
-            Add to Cart
-          </button>
-        </div>
-
-        <div className="product-container">
-          <div className="product-image-container">
-            <img className="product-image"
-              src="/products/intermediate-composite-basketball.jpg" />
-          </div>
-
-          <div className="product-name limit-text-to-2-lines">
-            Intermediate Size Basketball
-          </div>
-
-          <div className="product-rating-container">
-            <img className="product-rating-stars"
-              src="/ratings/rating-40.png" />
-            <div className="product-rating-count link-primary">
-              127
+            <div className="product-name limit-text-to-2-lines">
+              {product.name}
             </div>
-          </div>
 
-          <div className="product-price">
-            $20.95
-          </div>
-
-          <div className="product-quantity-container">
-            <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </div>
-
-          <div className="product-spacer"></div>
-
-          <div className="added-to-cart">
-            <img src="/icons/checkmark.png" />
-            Added
-          </div>
-
-          <button className="add-to-cart-button button-primary">
-            Add to Cart
-          </button>
-        </div>
-
-        <div className="product-container">
-          <div className="product-image-container">
-            <img className="product-image"
-              src="/products/adults-plain-cotton-tshirt-2-pack-teal.jpg" />
-          </div>
-
-          <div className="product-name limit-text-to-2-lines">
-            Adults Plain Cotton T-Shirt - 2 Pack
-          </div>
-
-          <div className="product-rating-container">
-            <img className="product-rating-stars"
-              src="/ratings/rating-45.png" />
-            <div className="product-rating-count link-primary">
-              56
+            <div className="product-rating-container">
+              <img className="product-rating-stars"
+                src={getRatingImage(product.rating.stars)} />
+              <div className="product-rating-count link-primary">
+                {product.rating.count}
+              </div>
             </div>
+
+            <div className="product-price">
+              ${formatPrice(product.priceCents)}
+            </div>
+
+            <div className="product-quantity-container">
+              <select id={`qty-${product.id}`}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+
+            <div className="product-spacer"></div>
+
+            <div className="added-to-cart">
+              <img src="/icons/checkmark.png" />
+              Added
+            </div>
+
+            <button 
+              className="add-to-cart-button button-primary"
+              onClick={() => {
+                const quantity = document.getElementById(`qty-${product.id}`).value;
+                handleAddToCart(product, quantity);
+              }}
+            >
+              Add to Cart
+            </button>
           </div>
-
-          <div className="product-price">
-            $7.99
-          </div>
-
-          <div className="product-quantity-container">
-            <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </div>
-
-          <div className="product-spacer"></div>
-
-          <div className="added-to-cart">
-            <img src="/icons/checkmark.png" />
-            Added
-          </div>
-
-          <button className="add-to-cart-button button-primary">
-            Add to Cart
-          </button>
-        </div>
+        ))}
       </div>
     </div>
         </>
