@@ -1,68 +1,1319 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+/*General*/
 body {
+  font-family: Roboto, Arial;
+  color: rgb(33, 33, 33);
+  /* The <body> element has a default margin of 8px
+     on all sides. This removes the default margins. */
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Remove the default margins of <p> elements. */
+p {
+  margin: 0;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-size: 14px;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+select {
+  cursor: pointer;
+}
+
+input, select, button {
+  font-family: Roboto, Arial;
+}
+
+.button-primary {
+  color: rgb(255, 255, 255);
+  background-color: rgb(25, 135, 84);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(220, 220, 220, 0.5);
+}
+
+.button-primary:hover {
+  background-color: rgba(25, 135, 84, 0.75);
+  border: 1px solid transparent;
+}
+
+.button-primary:active {
+  background: rgba(25, 135, 84, 0.5);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.button-secondary {
+  color: rgb(33, 33, 33);
+  background: white;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(220, 220, 220, 0.2);
+}
+
+.button-secondary:hover {
+  background-color: rgb(250, 250, 250);
+}
+
+.button-secondary:active {
+  background-color: rgb(240, 240, 240);
+  box-shadow: none;
+}
+
+/* These styles will limit text to 2 lines. Anything
+   beyond 2 lines will be replaced with "..."
+   You can find this code by using an A.I. tool or by
+   searching in Google.
+   https://css-tricks.com/almanac/properties/l/line-clamp/ */
+.limit-text-to-2-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.link-primary {
+  color: rgb(25, 135, 84);
+  cursor: pointer;
+}
+
+.link-primary:hover {
+  opacity: 0.75;
+}
+
+.link-primary:active {
+  opacity: 0.5;
+}
+
+/* Styles for dropdown selectors. */
+select {
+  color: rgb(33, 33, 33);
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  padding: 3px 5px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(200, 200, 200, 0.2);
+}
+
+select:focus,
+input:focus {
+  outline: 2px solid rgb(25, 135, 84);
+}
+
+/*Header*/
+
+.header {
+  background-color: rgb(8, 79, 45);
+  color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+}
+
+.header .left-section {
+  width: 208px;
+}
+
+@media (max-width: 800px) {
+  .header .left-section {
+    width: unset;
   }
-  a:hover {
-    color: #747bff;
+}
+
+.header .header-link {
+  display: inline-block;
+  padding: 6px 9.5px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.header .header-link:hover {
+  border: 1px solid white;
+}
+
+.header .logo {
+  height: 26px;
+  margin-top: 1px;
+}
+
+.header .mobile-logo {
+  display: none;
+}
+
+@media (max-width: 675px) {
+  .header .logo {
+    display: none;
   }
-  button {
-    background-color: #f9f9f9;
+
+  .header .mobile-logo {
+    display: block;
+    height: 26px;
+    margin-top: 1px;
   }
+}
+
+.header .middle-section {
+  flex: 1;
+  max-width: 850px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+}
+
+.header .search-bar {
+  flex: 1;
+  width: 0;
+  font-size: 16px;
+  height: 38px;
+  padding-left: 15px;
+  border: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.header .search-button {
+  background-color: rgb(186, 255, 190);
+  border: none;
+  width: 45px;
+  height: 40px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  flex-shrink: 0;
+}
+
+.header .search-icon {
+  height: 20px;
+  margin-left: 0px;
+  margin-top: 3px;
+}
+
+.header .right-section {
+  width: 180px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: end;
+}
+
+.header .orders-link {
+  color: white;
+
+  display: flex;
+  align-items: center;
+  padding-left: 13px;
+  padding-right: 13px;
+}
+
+.header .orders-text {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.header .cart-link {
+  color: white;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.header .cart-icon {
+  width: 38px;
+}
+
+.header .cart-text {
+  margin-left: 5px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.header .cart-quantity {
+  color: rgb(8, 79, 45);
+  font-size: 14px;
+  font-weight: 700;
+
+  position: absolute;
+  top: 8.5px;
+  right: 46px;
+
+  width: 26px;
+  text-align: center;
+}
+
+
+
+
+
+
+
+/* Styles for the checkout header */
+.checkout-header {
+  height: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.checkout-header .header-content {
+  width: 100%;
+  max-width: 1100px;
+
+  display: flex;
+  align-items: center;
+}
+
+.checkout-header .checkout-header-left-section {
+  width: 200px;
+}
+
+.checkout-header .logo {
+  height: 26px;
+  margin-top: 0px;
+}
+
+.checkout-header .mobile-logo {
+  display: none;
+}
+
+/* @media is used to create responsive design (making the
+   website look good on any screen size). This @media
+   means when the screen width is 575px or less, different
+   styles (inside the {...}) will be applied. */
+@media (max-width: 575px) {
+  .checkout-header .checkout-header-left-section {
+    width: auto;
+  }
+
+  .checkout-header .logo {
+    display: none;
+  }
+
+  .checkout-header .mobile-logo {
+    display: inline-block;
+    height: 26px;
+  }
+}
+
+.checkout-header .checkout-header-middle-section {
+  flex: 1;
+  flex-shrink: 0;
+  text-align: center;
+
+  font-size: 22px;
+  font-weight: 500;
+
+  display: flex;
+  justify-content: center;
+}
+
+.checkout-header .return-to-home-link {
+  color: rgb(25, 135, 84);
+
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .checkout-header .checkout-header-middle-section {
+    font-size: 20px;
+    margin-right: 60px;
+  }
+
+  .checkout-header .return-to-home-link {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 575px) {
+  .checkout-header .checkout-header-middle-section {
+    margin-right: 5px;
+  }
+}
+
+.checkout-header .checkout-header-right-section {
+  text-align: right;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.checkout-header .checkout-header-right-section img {
+  height: 32px;
+}
+
+@media (max-width: 1000px) {
+  .checkout-header .checkout-header-right-section {
+    width: auto;
+  }
+}
+
+
+/* Checkout */
+.checkout-page {
+  max-width: 1100px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  margin-top: 140px;
+  margin-bottom: 100px;
+
+  /* margin-left: auto;
+     margin-right auto;
+     Is a trick for centering an element horizontally
+     without needing a container. */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.checkout-page .page-title {
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+
+.checkout-page .checkout-grid {
+  display: grid;
+  /* Here, 1fr means the first column will take
+     up the remaining space in the grid. */
+  grid-template-columns: 1fr 350px;
+  column-gap: 12px;
+
+  /* Use align-items: start; to prevent the elements
+     in the grid from stretching vertically. */
+  align-items: start;
+}
+
+@media (max-width: 1000px) {
+  .checkout-page .main {
+    max-width: 500px;
+  }
+
+  .checkout-page .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.checkout-page .cart-item-container,
+.checkout-page .payment-summary {
+  border: 1px solid rgb(222, 222, 222);
+  border-radius: 4px;
+  padding: 18px;
+}
+
+.checkout-page .cart-item-container {
+  margin-bottom: 12px;
+}
+
+.checkout-page .payment-summary {
+  padding-bottom: 5px;
+}
+
+@media (max-width: 1000px) {
+  .checkout-page .payment-summary {
+    /* grid-row: 1 means this element will be placed into row
+      1 in the grid. (Normally, the row that an element is
+      placed in is determined by the order of the elements in
+      the HTML. grid-row overrides this default ordering). */
+    grid-row: 1;
+    margin-bottom: 12px;
+  }
+}
+
+.checkout-page .delivery-date {
+  color: rgb(25, 135, 84);
+  font-weight: 700;
+  font-size: 19px;
+  margin-top: 5px;
+  margin-bottom: 22px;
+}
+
+.checkout-page .cart-item-details-grid {
+  display: grid;
+  /* 100px 1fr 1fr; means the 2nd and 3rd column will
+    take up half the remaining space in the grid
+    (they will divide up the remaining space evenly). */
+  grid-template-columns: 100px 1fr 1fr;
+  column-gap: 25px;
+}
+
+@media (max-width: 1000px) {
+  .checkout-page .cart-item-details-grid {
+    grid-template-columns: 100px 1fr;
+    row-gap: 30px;
+  }
+}
+
+.checkout-page .product-image {
+  max-width: 100%;
+  max-height: 120px;
+
+  /* margin-left: auto;
+     margin-right auto;
+     Is a trick for centering an element horizontally
+     without needing a container. */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.checkout-page .product-name {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.checkout-page .product-price {
+
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.checkout-page .product-quantity .link-primary {
+  margin-left: 3px;
+}
+
+@media (max-width: 1000px) {
+  .checkout-page .delivery-options {
+    /* grid-column: 1 means this element will be placed
+       in column 1 in the grid. (Normally, the column that
+       an element is placed in is determined by the order
+       of the elements in the HTML. grid-column overrides
+       this default ordering).
+
+       / span 2 means this element will take up 2 columns
+       in the grid (Normally, each element takes up 1
+       column in the grid). */
+    grid-column: 1 / span 2;
+  }
+}
+
+.checkout-page .delivery-options-title {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.checkout-page .delivery-option {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.checkout-page .delivery-option-input {
+  margin: 3px 5px 0px 0px;
+  cursor: pointer;
+}
+
+.checkout-page .delivery-option-date {
+
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.checkout-page .delivery-option-price {
+  color: rgb(120, 120, 120);
+  font-size: 15px;
+}
+
+.checkout-page .payment-summary-title {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.checkout-page .payment-summary-row {
+  display: grid;
+  /* 1fr auto; means the width of the 2nd column will be
+     determined by the elements inside the column (auto).
+     The 1st column will take up the remaining space. */
+  grid-template-columns: 1fr auto;
+
+  font-size: 15px;
+  margin-bottom: 9px;
+}
+
+.checkout-page .payment-summary-money {
+  text-align: right;
+}
+
+.checkout-page .subtotal-row .payment-summary-money {
+  border-top: 1px solid rgb(222, 222, 222);
+}
+
+.checkout-page .subtotal-row div {
+  padding-top: 9px;
+}
+
+.checkout-page .total-row {
+  color: rgb(25, 135, 84);
+  font-weight: 700;
+  font-size: 18px;
+
+  border-top: 1px solid rgb(222, 222, 222);
+  padding-top: 18px;
+}
+
+.checkout-page .place-order-button {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 5px;
+
+  margin-top: 20px;
+  margin-bottom: 19px;
+}
+
+/* HomePage*/
+
+.home-page {
+  margin-top: 60px;
+}
+
+.home-page .products-grid {
+  display: grid;
+
+  /* - In CSS Grid, 1fr means a column will take up the
+       remaining space in the grid.
+     - If we write 1fr 1fr ... 1fr; 8 times, this will
+       divide the grid into 8 columns, each taking up an
+       equal amount of the space.
+     - repeat(8, 1fr); is a shortcut for repeating "1fr"
+       8 times (instead of typing out "1fr" 8 times).
+       repeat(...) is a special property that works with
+       display: grid; */
+  grid-template-columns: repeat(8, 1fr);
+}
+
+/* @media is used to create responsive design (making the
+   website look good on any screen size). This @media
+   means when the screen width is 2000px or less, we
+   will divide the grid into 7 columns instead of 8. */
+@media (max-width: 2000px) {
+  .home-page .products-grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+/* This @media means when the screen width is 1600px or
+   less, we will divide the grid into 6 columns. */
+@media (max-width: 1600px) {
+  .home-page .products-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 1300px) {
+  .home-page .products-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 1000px) {
+  .home-page .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .home-page .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 575px) {
+  .home-page .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .home-page .products-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.home-page .product-container {
+  padding-top: 40px;
+  padding-bottom: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+
+  border-right: 1px solid rgb(240, 240, 240);
+  border-bottom: 1px solid rgb(240, 240, 240);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.home-page .product-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 180px;
+  margin-bottom: 20px;
+}
+
+.home-page .product-image {
+  /* Images overflow the container by default. To prevent this, set
+     max-width and max-height to 100% to stay inside container. */
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 5px;
+}
+
+.home-page .product-name {
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+.home-page .product-rating-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.home-page .product-rating-stars {
+  width: 100px;
+  margin-right: 6px;
+}
+
+.home-page .product-rating-count {
+  color: rgb(25, 135, 84);
+  cursor: auto;
+  margin-top: 3px;
+}
+
+.home-page .product-price {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.home-page .product-quantity-container {
+  margin-bottom: 17px;
+}
+
+.home-page .product-spacer {
+  flex: 1;
+}
+
+.home-page .added-to-cart {
+  color: rgb(25, 135, 84);
+  font-size: 16px;
+
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  /* At first, the "Added to cart" message will
+     be invisible. Use JavaScript to change the
+     opacity and make it visible. */
+  opacity: 0;
+}
+
+.home-page .added-to-cart img {
+  height: 19px;
+  margin-right: 6px;
+}
+
+.home-page .add-to-cart-button {
+  width: 100%;
+  padding: 8px;
+  height: 34px;
+  margin-top: 1px;
+}
+
+
+/*Orders*/
+.orders-page {
+  max-width: 850px;
+  margin-top: 90px;
+  margin-bottom: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  /* margin-left: auto;
+     margin-right auto;
+     Is a trick for centering an element horizontally
+     without needing a container. */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.orders-page .page-title {
+  font-weight: 700;
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
+.orders-page .orders-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 50px;
+}
+
+.orders-page .order-header {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(222, 222, 222);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px 25px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.orders-page .order-header-left-section {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.orders-page .order-header-label {
+  font-weight: 700;
+}
+
+.orders-page .order-date,
+.orders-page .order-total {
+  margin-right: 45px;
+}
+
+.orders-page .order-header-right-section {
+  flex-shrink: 1;
+}
+
+@media (max-width: 575px) {
+  .orders-page .order-header {
+    flex-direction: column;
+    align-items: start;
+    line-height: 23px;
+    padding: 15px;
+  }
+
+  .orders-page .order-header-left-section {
+    flex-direction: column;
+  }
+
+  .orders-page .order-header-label {
+    margin-right: 5px;
+  }
+
+  .orders-page .order-date,
+  .orders-page .order-total {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin-right: 0;
+  }
+
+  .orders-page .order-header-right-section {
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+}
+
+.orders-page .order-details-grid {
+  padding: 40px 25px;
+  border: 1px solid rgb(222, 222, 222);
+  border-top: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  display: grid;
+  grid-template-columns: 110px 1fr 220px;
+  column-gap: 35px;
+  row-gap: 60px;
+  align-items: center;
+}
+
+@media (max-width: 800px) {
+  .orders-page .order-details-grid {
+    grid-template-columns: 110px 1fr;
+    row-gap: 0;
+    padding-bottom: 8px;
+  }
+}
+
+@media (max-width: 450px) {
+  .orders-page .order-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.orders-page .product-image-container {
+  text-align: center;
+}
+
+.orders-page .product-image-container img {
+  max-width: 110px;
+  max-height: 110px;
+}
+
+.orders-page .product-name {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.orders-page .product-delivery-date {
+  margin-bottom: 3px;
+}
+
+.orders-page .product-quantity {
+  margin-bottom: 8px;
+}
+
+.orders-page .buy-again-button {
+  font-size: 14px;
+  width: 140px;
+  height: 36px;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orders-page .buy-again-icon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.orders-page .product-actions {
+  align-self: start;
+}
+
+.orders-page .track-package-button {
+  width: 100%;
+  font-size: 14px;
+  padding: 8px;
+}
+
+@media (max-width: 800px) {
+  .orders-page .buy-again-button {
+    margin-bottom: 10px;
+  }
+
+  .orders-page .product-actions {
+    /* grid-column: 2 means this element will be placed
+       in column 2 in the grid. (Normally, the column that
+       an element is placed in is determined by the order
+       of the elements in the HTML. grid-column overrides
+       this default ordering). */
+    grid-column: 2;
+    margin-bottom: 30px;
+  }
+
+  .orders-page .track-package-button {
+    width: 140px;
+  }
+}
+
+@media (max-width: 450px) {
+  .orders-page .product-image-container {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .orders-page .product-image-container img {
+    max-width: 150px;
+    max-height: 150px;
+  }
+
+  .orders-page .product-name {
+    margin-bottom: 10px;
+  }
+
+  .orders-page .product-quantity {
+    margin-bottom: 15px;
+  }
+
+  .orders-page .buy-again-button {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .orders-page .product-actions {
+    /* grid-column: auto; undos grid-column: 2; from above.
+      This element will now be placed in its normal column
+      in the grid. */
+    grid-column: auto;
+    margin-bottom: 70px;
+  }
+
+  .orders-page .track-package-button {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+
+/*Tracking*/
+
+.tracking-page {
+  max-width: 850px;
+  margin-top: 90px;
+  margin-bottom: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  /* margin-left: auto;
+     margin-right auto;
+     Is a trick for centering an element horizontally
+     without needing a container. */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tracking-page .back-to-orders-link {
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.tracking-page .delivery-date {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.tracking-page .product-info {
+  margin-bottom: 3px;
+}
+
+.tracking-page .product-image {
+  max-width: 150px;
+  max-height: 150px;
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+
+.tracking-page .progress-labels-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.tracking-page .current-status {
+  color: rgb(25, 135, 84);
+}
+
+@media (max-width: 575px) {
+  .tracking-page .progress-labels-container {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 450px) {
+  .tracking-page .progress-labels-container {
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+
+  .tracking-page .progress-label {
+    margin-bottom: 3px;
+  }
+}
+
+.tracking-page .progress-bar-container {
+  height: 25px;
+  width: 100%;
+
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.tracking-page .progress-bar {
+  height: 100%;
+  background-color: rgb(25, 135, 84);
+  border-radius: 50px;
+  width: 50%;
+}
+
+
+/*General*/
+body {
+  font-family: Roboto, Arial;
+  color: rgb(33, 33, 33);
+  /* The <body> element has a default margin of 8px
+     on all sides. This removes the default margins. */
+  margin: 0;
+}
+
+/* Remove the default margins of <p> elements. */
+p {
+  margin: 0;
+}
+
+button {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+select {
+  cursor: pointer;
+}
+
+input, select, button {
+  font-family: Roboto, Arial;
+}
+
+.button-primary {
+  color: rgb(255, 255, 255);
+  background-color: rgb(25, 135, 84);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(220, 220, 220, 0.5);
+}
+
+.button-primary:hover {
+  background-color: rgba(25, 135, 84, 0.75);
+  border: 1px solid transparent;
+}
+
+.button-primary:active {
+  background: rgba(25, 135, 84, 0.5);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.button-secondary {
+  color: rgb(33, 33, 33);
+  background: white;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(220, 220, 220, 0.2);
+}
+
+.button-secondary:hover {
+  background-color: rgb(250, 250, 250);
+}
+
+.button-secondary:active {
+  background-color: rgb(240, 240, 240);
+  box-shadow: none;
+}
+
+/* These styles will limit text to 2 lines. Anything
+   beyond 2 lines will be replaced with "..."
+   You can find this code by using an A.I. tool or by
+   searching in Google.
+   https://css-tricks.com/almanac/properties/l/line-clamp/ */
+.limit-text-to-2-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.link-primary {
+  color: rgb(25, 135, 84);
+  cursor: pointer;
+}
+
+.link-primary:hover {
+  opacity: 0.75;
+}
+
+.link-primary:active {
+  opacity: 0.5;
+}
+
+/* Styles for dropdown selectors. */
+select {
+  color: rgb(33, 33, 33);
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  padding: 3px 5px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(200, 200, 200, 0.2);
+}
+
+select:focus,
+input:focus {
+  outline: 2px solid rgb(25, 135, 84);
+}
+
+/*Header*/
+
+.header {
+  background-color: rgb(8, 79, 45);
+  color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+}
+
+.header .left-section {
+  width: 208px;
+}
+
+@media (max-width: 800px) {
+  .header .left-section {
+    width: unset;
+  }
+}
+
+.header .header-link {
+  display: inline-block;
+  padding: 6px 9.5px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.header .header-link:hover {
+  border: 1px solid white;
+}
+
+.header .logo {
+  height: 26px;
+  margin-top: 1px;
+}
+
+.header .mobile-logo {
+  display: none;
+}
+
+@media (max-width: 675px) {
+  .header .logo {
+    display: none;
+  }
+
+  .header .mobile-logo {
+    display: block;
+    height: 26px;
+    margin-top: 1px;
+  }
+}
+
+.header .middle-section {
+  flex: 1;
+  max-width: 850px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+}
+
+.header .search-bar {
+  flex: 1;
+  width: 0;
+  font-size: 16px;
+  height: 38px;
+  padding-left: 15px;
+  border: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.header .search-button {
+  background-color: rgb(186, 255, 190);
+  border: none;
+  width: 45px;
+  height: 40px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  flex-shrink: 0;
+}
+
+.header .search-icon {
+  height: 20px;
+  margin-left: 0px;
+  margin-top: 3px;
+}
+
+.header .right-section {
+  width: 180px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: end;
+}
+
+.header .orders-link {
+  color: white;
+
+  display: flex;
+  align-items: center;
+  padding-left: 13px;
+  padding-right: 13px;
+}
+
+.header .orders-text {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.header .cart-link {
+  color: white;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.header .cart-icon {
+  width: 38px;
+}
+
+.header .cart-text {
+  margin-left: 5px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.header .cart-quantity {
+  color: rgb(8, 79, 45);
+  font-size: 14px;
+  font-weight: 700;
+
+  position: absolute;
+  top: 8.5px;
+  right: 46px;
+
+  width: 26px;
+  text-align: center;
 }
